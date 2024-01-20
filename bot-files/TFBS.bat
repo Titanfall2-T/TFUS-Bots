@@ -1,21 +1,14 @@
-::This is the number of gane instances to run
-set "instances=12"
-::This is how many seconds to wait before restarting all bots
-set "restarttime=7200"
-::This is the path to the game installation location
-set "path=C:\Program Files (x86)\Steam\steamapps\common\Titanfall2"
-
 echo Launching bots...
-:start
+:b
 @echo off
-FOR %%a IN (1,1,%instances%) DO (
-  start %path% NorthstarLauncher.exe -norestrictservercommands -profile=R2Titanfall +ns_has_agreed_to_send_token 2
+FOR %%a IN (1,1,12) DO (
+  start "C:\Program Files (x86)\Steam\steamapps\common\Titanfall2" NorthstarLauncher.exe -norestrictservercommands -profile=R2Titanfall +ns_has_agreed_to_send_token 2
   timeout 5
 )
 echo Starting timer...
-timeout %restarttime=7200%
+timeout 7200
 echo Closing bots...
 TASKKILL /IM NorthstarLauncher.exe /F
 timeout 5
 echo Restarting bots...
-goto start
+goto b
